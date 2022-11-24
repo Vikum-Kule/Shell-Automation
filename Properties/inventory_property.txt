@@ -1,0 +1,2 @@
+(1)Net_Sales_Total:6723731.15389998
+(2)Last_Year_Net_Sales Total:2223345.7
