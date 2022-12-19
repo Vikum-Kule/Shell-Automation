@@ -2,13 +2,13 @@
 foreach($line in [System.IO.File]::ReadLines(".\Properties\cashmanagement_property.txt"))
 {
 	#get total expected value 
-      if ($line.Contains("Total Expected val")) {
+      if ($line.Contains("(1)Total Expected val")) {
 		$position = $line.IndexOf(":")      
 		$totalExpectedVal = $line.Substring($position+1)
 		Write-Output $totalExpectedVal
 	}
 	#get total counted value
-	elseif ($line.Contains("Total Counted val")) {
+	elseif ($line.Contains("(2)Total Counted val")) {
       	$position = $line.IndexOf(":")      
 		$totalCountedVal = $line.Substring($position+1)
 		Write-Output $totalCountedVal
