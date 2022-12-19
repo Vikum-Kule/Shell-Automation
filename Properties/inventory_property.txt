@@ -1,2 +1,6 @@
 (1)Net_Sales_Total:6723731.15389998
-(2)Last_Year_Net_Sales Total:2223345.7
+(2)Last_Year_Net_Sales_Total:2223345.7
+(3)Total_Inventory_Units :160158
+(4)Total_Inventory_Cost :30047739.12
+(5)Cumulative_Total_Products:160158
+(6)Number_Of_Stock_Outs:1
