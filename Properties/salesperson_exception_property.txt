@@ -1,0 +1,10 @@
+net_sales=0
+transaction_count=0
+returns_value=0
+returns_units=0
+total_discounts=0
+total_price_overrides=0
+total_return_values_within_auth_threshold=0
+transaction_count_returns_within_auth_threshold=0
+total_voided_transaction_count=0
+total_voided_values=0
