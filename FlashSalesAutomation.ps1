@@ -111,5 +111,8 @@ ADDCOLUMNS (
 
 Write-Output $test_cases
 
+$deployment_params = Get-Content -Raw -Path "./Parameters.json" | Convertfrom-Json
+$azure_bi_analysisserver_name =  $deployment_params.parameters.azure_bi_analysisserver_name.value
+
 # connecting to the Azure analysis server Cahemanagement model and pass test casess
-Invoke-ASCmd -Server "asazure://uksouth.asazure.windows.net/enbiastestautomation" -Database "FlashSales" -Query $test_cases | Out-File -FilePath .\Results\flashsales_result.xml
+Invoke-ASCmd -Server $azure_bi_analysisserver_name -Database "FlashSales" -Query $test_cases | Out-File -FilePath .\Results\flashsales_result.xml

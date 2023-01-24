@@ -1,0 +1,7 @@
+{
+     "parameters": {
+        "azure_bi_analysisserver_name": {
+            "value": "asazure://uksouth.asazure.windows.net/prevalas001"
+        }
+        }
+    }

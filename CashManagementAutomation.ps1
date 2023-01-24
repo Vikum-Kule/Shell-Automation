@@ -1,19 +1,6 @@
-#Read line by line from property file
-foreach($line in [System.IO.File]::ReadLines(".\Properties\cashmanagement_property.txt"))
-{
-	#get total expected value 
-      if ($line.Contains("(1)Total Expected val")) {
-		$position = $line.IndexOf(":")      
-		$totalExpectedVal = $line.Substring($position+1)
-		Write-Output $totalExpectedVal
-	}
-	#get total counted value
-	elseif ($line.Contains("(2)Total Counted val")) {
-      	$position = $line.IndexOf(":")      
-		$totalCountedVal = $line.Substring($position+1)
-		Write-Output $totalCountedVal
-	}
-}
+#Read line by line from property file.
+$cashManagementProps = convertfrom-stringdata (get-content .\Properties\cashmanagement_property.txt -raw)
+
 
 #define test cases as DAX queries
 $test_cases = 'EVALUATE
@@ -21,13 +8,13 @@ $test_cases = 'EVALUATE
    UNION(
 	ROW (
            "Test Name", "Total Expected Value",
-             "Expected Value",'+ $totalExpectedVal+'
+             "Expected Value",'+ $cashManagementProps.total_expected_val+'
  ,
              "Actual Value",{ [TotalExpectedVal] }
          ),	
      ROW (
            "Test Name", "Total Counted Value",
-             "Expected Value",'+ $totalCountedVal+'
+             "Expected Value",'+ $cashManagementProps.total_counted_val+'
  ,
              "Actual Value",{ [TotalCountedVal] }
          )
@@ -38,7 +25,9 @@ $test_cases = 'EVALUATE
 
 # Write-Output $test
 
+$deployment_params = Get-Content -Raw -Path "./Parameters.json" | Convertfrom-Json
+$azure_bi_analysisserver_name =  $deployment_params.parameters.azure_bi_analysisserver_name.value
 
 # connecting to the Azure analysis server Cahemanagement model and pass test casess
-Invoke-ASCmd -Server "asazure://uksouth.asazure.windows.net/prevalas001" -Database "CashManagement" -Query $test_cases | Out-File -FilePath .\Results\cashmanagement_result.xml
+Invoke-ASCmd -Server $azure_bi_analysisserver_name -Database "CashManagement" -Query $test_cases | Out-File -FilePath .\Results\cashmanagement_result.xml
 

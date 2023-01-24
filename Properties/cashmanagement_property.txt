@@ -1,2 +1,2 @@
-(1)Total Expected val:181676.75
-(2)Total Counted val:23344.87
+total_expected_val=181676.75
+total_counted_val=23344.87
